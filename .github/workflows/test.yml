@@ -1,0 +1,25 @@
+name: test
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: [ develop ]
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        es-version:
+          - 'es:8.13.4'
+    env:
+      mainJob: ${{ matrix.es-version == 'es:8.13.4' }}
+    steps:
+    - name: print env
+      run: |
+        echo $GITHUB_ACTION_REPOSITORY
+        echo $GITHUB_REPOSITORY
+        echo $GITHUB_REPOSITORY_OWNER
+        echo "event = ${{ toJson(github.event) }}"
+
