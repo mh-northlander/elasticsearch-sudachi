@@ -21,4 +21,5 @@ jobs:
         echo $GITHUB_ACTION_REPOSITORY
         echo $GITHUB_REPOSITORY
         echo $GITHUB_REPOSITORY_OWNER
+        echo "event = ${{ toJson(github.event) }}"
 
